@@ -2,7 +2,6 @@
   "ambientDependencies": {
     "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#86dbea8fc37d9473fee465da4f0a21bea4f8cbd9",
     "angular-mocks": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular-mocks.d.ts#54f064352a3615443f7bff4198078db15e28247b",
-    "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#54f064352a3615443f7bff4198078db15e28247b",
     "chai": "github:DefinitelyTyped/DefinitelyTyped/chai/chai.d.ts#54f064352a3615443f7bff4198078db15e28247b",
     "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#35989a3ab4834b8e8b2b56788f1d4fc46a25dc8d",
     "immutable": "npm:immutable/dist/immutable.d.ts",

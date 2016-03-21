@@ -43,7 +43,7 @@ module.exports = {
       'es6-promise',
       'immutable',
       'angular',
-      'angular-ui-router',
+      'ngcomponentrouter',
       'redux',
       'redux-thunk',
       'ng-redux',

@@ -1,3 +1,5 @@
+import Inject from '../utils/di';
+
 import * as CounterActions from '../actions/counter';
 
 export class RioCounterPage {
@@ -20,13 +22,11 @@ export class RioCounterPage {
     `
   };
 
-  static $inject = [
-    '$ngRedux',
-    '$scope',
-    '$rootScope'
-  ];
+  constructor(
+    @Inject('$ngRedux') $ngRedux,
+    @Inject('$scope') $scope: ng.IScope,
+    @Inject('$rootScope') $rootScope) {
 
-  constructor($ngRedux, $scope: ng.IScope, $rootScope) {
     const disconnect = $ngRedux.connect(
       this.mapStateToThis, CounterActions)(this);
 

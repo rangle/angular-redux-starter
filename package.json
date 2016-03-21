@@ -59,7 +59,6 @@
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",
-    "angular-ui-router": "0.2.15",
     "chai": "^3.5.0",
     "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
@@ -83,6 +82,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
     "ng-redux": "^3.3.3",
+    "ngcomponentrouter": "^1.5.0",
     "postcss-cssnext": "^2.5.1",
     "postcss-import": "^8.0.2",
     "postcss-loader": "^0.8.2",
