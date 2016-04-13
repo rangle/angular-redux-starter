@@ -92,7 +92,7 @@
     "redux-localstorage": "^0.4.0",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1",
-    "remap-istanbul": "^0.5.1",
+    "remap-istanbul": "^0.6.0",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
