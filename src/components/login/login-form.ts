@@ -27,7 +27,7 @@ export class RioLoginForm {
           <rio-label>Username</rio-label>
           <rio-input
             type="text"
-            placeholder="username"
+            placeholder="Username"
             input-name="username"
             ng-model="loginFormCtrl.credentials.username"
             required="true">
@@ -45,7 +45,7 @@ export class RioLoginForm {
           <rio-input
             type="password"
             input-name="password"
-            placeholder="password"
+            placeholder="Password"
             ng-model="loginFormCtrl.credentials.password"
             required="true">
           </rio-input>
@@ -58,7 +58,7 @@ export class RioLoginForm {
         </rio-form-group>
 
         <rio-form-group>
-          <rio-button type="submit" class-name="mr1">Submit</rio-button>
+          <rio-button type="submit" class-name="mr1">Login</rio-button>
           <rio-button
             class-name="bg-red"
             ng-click="loginFormCtrl.clear(loginForm)">

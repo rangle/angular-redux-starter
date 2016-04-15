@@ -20,10 +20,10 @@ export class RioSampleApp {
             <rio-logo></rio-logo>
           </rio-navigator-item>
 
-          <rio-navigator-item mr="true" ng-if="appCtrl.isLoggedIn">
+          <rio-navigator-item ng-if="appCtrl.isLoggedIn" mr="true">
             <a ng-link="['Counter']" class="text-decoration-none">Counter</a>
           </rio-navigator-item>
-          <rio-navigator-item class="p1" ng-if="appCtrl.isLoggedIn">
+          <rio-navigator-item ng-if="appCtrl.isLoggedIn">
             <a ng-link="['About']" class="text-decoration-none">About Us</a>
           </rio-navigator-item>
           <div class="flex flex-auto"></div>
@@ -32,7 +32,7 @@ export class RioSampleApp {
               appCtrl.session.getIn(['user', 'firstName'], '') + ' ' +
               appCtrl.session.getIn(['user', 'lastName'], '') }}
           </rio-navigator-item>
-          <rio-navigator-item>
+          <rio-navigator-item ng-hide="!appCtrl.isLoggedIn">
             <rio-button
               ng-click="appCtrl.logout()"
               class-name="bg-red white">
@@ -40,7 +40,7 @@ export class RioSampleApp {
             </rio-button>
           </rio-navigator-item>
         </rio-navigator>
-        <div class="mt3 p1" ng-show="appCtrl.isLoggedIn">
+        <div ng-show="appCtrl.isLoggedIn">
           <ng-outlet></ng-outlet>
         </div>
       </div>
