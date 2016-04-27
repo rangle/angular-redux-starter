@@ -23,10 +23,10 @@ export class AuthenticationActions {
       const password = credentials.password;
 
       this.authService.login(credentials)
-      .then((data)=> {
+      .then((data) => {
         dispatch({
           type: LOGIN_USER_SUCCESS,
-          payload:{
+          payload: {
             token: data.meta.token,
             profile: {
               firstName: username,
@@ -35,7 +35,7 @@ export class AuthenticationActions {
           }
         });
       })
-      .then(null, (error)=>{
+      .then(null, (error) => {
         dispatch({
           type: LOGIN_USER_ERROR,
         });

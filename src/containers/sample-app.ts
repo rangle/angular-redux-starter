@@ -68,8 +68,6 @@ export class RioSampleApp {
     $scope: ng.IScope,
     private authenticationActions: AuthenticationActions
   ) {
-    console.log(AuthenticationActions);
-    console.log(this.authenticationActions);
     const unsubscribe = $ngRedux.connect(
       this.mapStateToThis, this.mapDispatchToThis.bind(this))(this);
 
@@ -85,7 +83,8 @@ export class RioSampleApp {
 
   mapDispatchToThis(dispatch) {
     return {
-      login: (credentials) => dispatch(this.authenticationActions.loginUser(credentials)),
+      login: (credentials) => 
+        dispatch(this.authenticationActions.loginUser(credentials)),
       logout: () => dispatch(this.authenticationActions.logoutUser())
     };
   }

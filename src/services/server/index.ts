@@ -9,7 +9,8 @@ export class ServerService {
   // Actual server URL to be accessed, but blocked due to CORS
   // private BASE_URL = 'http://ngcourse.herokuapp.com';
 
-  // Instead, enable proxy in ../../../server/proxy-config.js re-routed via `/api/`
+  // Instead, enable proxy in ../../../server/proxy-config.js 
+  // requests are re-routed via `/api/`
   private BASE_URL = 'http://localhost:8080/api/';
 
   constructor(
