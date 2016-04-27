@@ -7,6 +7,10 @@ import * as angular from 'angular';
 import 'ngcomponentrouter';
 import './store/configure-store';
 
+import {AuthenticationActions} from './actions/authentication';
+import {AuthenticationService} from './services/authentication';
+import {ServerService} from './services/server';
+
 // Global styles
 import './styles/index.css';
 
@@ -31,6 +35,7 @@ import {
 
 import { RioAboutPage } from './containers/about-page';
 import { RioCounterPage } from './containers/counter-page';
+
 import { RioSampleApp } from './containers/sample-app';
 
 import { RouterConfig } from './services';
@@ -38,7 +43,6 @@ import { RouterConfig } from './services';
 angular.module('rio.router', ['ngComponentRouter'])
   .value('$routerRootComponent', RioSampleApp.selector)
   .config(RouterConfig);
-
 
 angular.module('rio.form', [])
   .component(RioForm.selector, RioForm.options)
@@ -66,8 +70,6 @@ angular.module('rio.components', ['counter.store'])
   .component(RioLogo.selector, RioLogo.options)
   .component(RioAlert.selector, RioAlert.options);
 
-
-
 angular.module('app', [
   'rio.router',
   'rio.components',
@@ -75,9 +77,14 @@ angular.module('app', [
   'rio.login',
   'rio.modal'])
   .component(
-  RioSampleApp.selector,
-  RioSampleApp.options
-  );
+    RioSampleApp.selector,
+    RioSampleApp.options
+  )
+  .service('ServerService', ServerService)
+  .service('AuthenticationService', AuthenticationService)
+  .service('AuthenticationActions', AuthenticationActions);
 
 angular.element(document).ready(
-  () => angular.bootstrap(document, ['app']));
+  () => angular.bootstrap(document, ['app'])
+);
+
