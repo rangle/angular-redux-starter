@@ -1,4 +1,3 @@
-//import { login } from '../api/login';
 import Inject from '../utils/di';
 
 import {AuthenticationService} from '../services';
@@ -12,11 +11,9 @@ import {
 
 export class AuthenticationActions {
   static $inject = [
-    //'dispatcher',
     'AuthenticationService'];
 
   constructor(
-    //private dispatcher: Rx.Subject<any>,
     private authService: AuthenticationService
   ) { }
 

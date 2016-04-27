@@ -1,6 +1,4 @@
-//import {loginUser, logoutUser} from '../actions/session';
 import {AuthenticationActions} from '../actions/authentication';
-//import {AuthenticationService} from '../services/authentication';
 
 export class RioSampleApp {
 
@@ -63,7 +61,6 @@ export class RioSampleApp {
   static $inject = [
     '$ngRedux',
     '$scope',
-    //'AuthenticationService',
     'AuthenticationActions'
   ];
 
@@ -73,7 +70,6 @@ export class RioSampleApp {
   ) {
     console.log(AuthenticationActions);
     console.log(this.authenticationActions);
-    //this.authActions = new AuthenticationActions();
     const unsubscribe = $ngRedux.connect(
       this.mapStateToThis, this.mapDispatchToThis.bind(this))(this);
 
@@ -88,12 +84,6 @@ export class RioSampleApp {
   }
 
   mapDispatchToThis(dispatch) {
-    // return {
-    //   login: (credentials) => dispatch(loginUser(credentials)),
-    //   logout: () => dispatch(logoutUser())
-    // };
-    console.log('mapDispatchToThis this');
-    console.log(this);
     return {
       login: (credentials) => dispatch(this.authenticationActions.loginUser(credentials)),
       logout: () => dispatch(this.authenticationActions.logoutUser())
