@@ -11,7 +11,7 @@ export class ServerService {
 
   // Instead, enable proxy in server/proxy-config.js 
   // requests are re-routed via `/api/`
-  private BASE_URL = 'http://localhost:8080/api/';
+  private BASE_URL = 'http://localhost:8080/api';
 
   constructor(
     private $http: angular.IHttpService
