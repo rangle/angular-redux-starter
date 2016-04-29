@@ -1,8 +1,8 @@
 import {expect} from 'chai';
 import {AuthenticationService} from './';
-  
+
 describe('AuthenticationService', () => {
-  let _mockServerService;//: ServerService;
+  let _mockServerService;
   let _mockCreds;
   let _mockResponse;
 
@@ -27,11 +27,12 @@ describe('AuthenticationService', () => {
     
     expect(_mockServerService).to.not.be.undefined;
     let authService = new AuthenticationService(_mockServerService);
-    //let _mockCreds = { username:'alice', password:'x'};
 
     expect(authService.login(_mockCreds)).to.not.be.undefined;
   });
 
+  //example of an asynchronous unit test
+  // using done() functionality of mocha
   it('should receive successful response', (done) => {
     
     expect(_mockServerService).to.not.be.undefined;
@@ -39,13 +40,12 @@ describe('AuthenticationService', () => {
     
     return authService.login(_mockCreds)
       .then(data => {
-        console.log('data');
-        console.log(data);
         // Assertions thrown here will result to a failed promise downstream.
         expect(data).to.deep.equal(_mockResponse);
+        // Remember to call done(), otherwise the test will time out (and fail).
         done();
       })
-      // Remember to call done(), otherwise the test will time out (and fail).
+      
       .then(null, error => {
         done(error);
       });
@@ -68,9 +68,8 @@ describe('AuthenticationService', () => {
     
     return authService.login(_mockCreds)
       .then(data => {
-        done({error:"login should fail, but it seems to have succeeded."});
+        done({error: "login request should fail, but it seems to have succeeded unexpectedly."});
       })
-      // Remember to call done(), otherwise the test will time out (and fail).
       .then(null, error => {
         done();
       });
