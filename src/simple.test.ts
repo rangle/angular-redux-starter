@@ -3,7 +3,6 @@
 // Load Chai's expect library for assertions.
 import {expect} from 'chai';
 
-//export function main() { 
 describe('Simple Math Test', () => {
   it('2*2 should equal 4', () => {
     let x = 2 * 2;

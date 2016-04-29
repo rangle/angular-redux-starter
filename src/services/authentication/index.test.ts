@@ -7,13 +7,13 @@ describe('AuthenticationService', () => {
   let _mockResponse;
 
   beforeEach(() => {
-    _mockCreds = { username:'alice', password:'x'};
+    _mockCreds = { username: 'alice', password: 'x'};
     _mockResponse = {
-      "data": {},
-      "isAuthenticated": true,
-      "meta": {
-        "token": "abc123",
-        "expires": "2100-01-01T01:01:0.0Z"
+      'data': {},
+      'isAuthenticated': true,
+      'meta': {
+        'token': 'abc123',
+        'expires': '2100-01-01T01:01:0.0Z'
       },
     };
     _mockServerService = {
@@ -31,7 +31,7 @@ describe('AuthenticationService', () => {
     expect(authService.login(_mockCreds)).to.not.be.undefined;
   });
 
-  //example of an asynchronous unit test
+  // example of an asynchronous unit test
   // using done() functionality of mocha
   it('should receive successful response', (done) => {
     
@@ -45,7 +45,6 @@ describe('AuthenticationService', () => {
         // Remember to call done(), otherwise the test will time out (and fail).
         done();
       })
-      
       .then(null, error => {
         done(error);
       });
@@ -59,7 +58,7 @@ describe('AuthenticationService', () => {
     };
     _mockServerService = {
       post: (path, data) => { 
-        return Promise.reject({ data: _mockResponse })
+        return Promise.reject({ data: _mockResponse });
       }
     };
 
@@ -68,7 +67,8 @@ describe('AuthenticationService', () => {
     
     return authService.login(_mockCreds)
       .then(data => {
-        done({error: "login request should fail, but it seems to have succeeded unexpectedly."});
+        done({
+          error: 'login request should fail, but succeeded.'});
       })
       .then(null, error => {
         done();
