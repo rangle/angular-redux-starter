@@ -69,7 +69,7 @@ describe('ServerService', () => {
         throw new Error('Auth should fail, but it seems to have succeeded.');
       })
       .then(null, error => {
-        //catch and suppress error, it is what we want.
+        // catch and suppress error, it is what we want.
       });
   });
 

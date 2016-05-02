@@ -64,7 +64,7 @@ describe('AuthenticationService', () => {
         throw new Error('Login should fail.');
       })
       .then(null, error => {
-        //catch and suppress error
+        // catch and suppress error
       });
   });
 });
