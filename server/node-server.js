@@ -22,15 +22,13 @@ app.use(helmet());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(function(req, res, next) {
-console.log("preauth?");
+
 auth(app);
-//app.use('/auth', auth);
-console.log("postauth?");
+
 // API proxy logic: if you need to talk to a remote server from your client-side
 // app you can proxy it though here by editing ./proxy-config.js
 nodeProxy(app);
-console.log("proxy?");
+
 // Serve the distributed assets and allow HTML5 mode routing. NB: must be last.
 nodeAppServer(app);
 
