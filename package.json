@@ -117,5 +117,6 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0",
     "webpack-split-by-path": "0.0.8"
+    "winston": "^2.2.0"
   }
 }
