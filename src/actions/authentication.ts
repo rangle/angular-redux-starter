@@ -29,8 +29,8 @@ export class AuthenticationActions {
           payload: {
             token: data.meta.token,
             profile: {
-              firstName: username,
-              lastName: username,
+              firstName: data.meta.first,
+              lastName: data.meta.last,
             }
           }
         });

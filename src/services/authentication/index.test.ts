@@ -8,14 +8,6 @@ describe('AuthenticationService', () => {
 
   beforeEach(() => {
     _mockCreds = { username: 'alice', password: 'x'};
-    _mockResponse = {
-      'data': {},
-      'isAuthenticated': true,
-      'meta': {
-        'token': 'abc123',
-        'expires': '2100-01-01T01:01:0.0Z'
-      },
-    };
     _mockServerService = {
       post: (path, data) => {
         return Promise.resolve({ data: _mockResponse });
@@ -31,26 +23,28 @@ describe('AuthenticationService', () => {
     expect(authService.login(_mockCreds)).to.not.be.undefined;
   });
 
-  // example of an asynchronous unit test
-  // using done() functionality of mocha
-  it('should receive successful response', (done) => {
-    
+  it('should receive successful response', () => {
+    _mockResponse = {
+      'data': {},
+      'isAuthenticated': true,
+      'meta': {
+        'token': 'abc123',
+        'expires': '2100-01-01T01:01:0.0Z',
+        'first': 'First',
+        'last': 'Last'
+      },
+    };
+
     expect(_mockServerService).to.not.be.undefined;
     let authService = new AuthenticationService(_mockServerService);
     
     return authService.login(_mockCreds)
       .then(data => {
-        // Assertions thrown here will result to a failed promise downstream.
         expect(data).to.deep.equal(_mockResponse);
-        // Remember to call done(), otherwise the test will time out (and fail).
-        done();
-      })
-      .then(null, error => {
-        done(error);
       });
   });
 
-  it('should encounter an error', (done) => {
+  it('should encounter an error', () => {
     
     _mockResponse = {
       status: 401,
@@ -67,11 +61,10 @@ describe('AuthenticationService', () => {
     
     return authService.login(_mockCreds)
       .then(data => {
-        done({
-          error: 'login request should fail, but succeeded.'});
+        throw new Error('Login should fail.');
       })
       .then(null, error => {
-        done();
+        //catch and suppress error
       });
   });
 });

@@ -6,12 +6,14 @@ export class ServerService {
     '$http'
   ];
 
-  // Actual server URL to be accessed, but blocked due to CORS
-  // private BASE_URL = 'http://ngcourse.herokuapp.com';
-
-  // Instead, enable proxy in server/proxy-config.js 
-  // requests are re-routed via `/api/`
+  // Actual server URL to be accessed, may blocked due to CORS
+  // We are handling this locally with node-server and server/auth.js
   private BASE_URL = 'http://localhost:8080/api';
+
+  // If trying to access a remote server and encountering CORS issues,
+  // enable local proxy in server/proxy-config.js 
+  // This way, requests are re-routed via `/api/`
+  // private BASE_URL = 'http://localhost:8080/api';
 
   constructor(
     private $http: angular.IHttpService

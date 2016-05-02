@@ -1,16 +1,24 @@
 [{
   "Username": "admin",
-  "Password": "superuser"
+  "Password": "superuser",
+  "First": "Super",
+  "Last": "Dave"
 },
 {
   "Username": "guest",
-  "Password": "letmein"
+  "Password": "letmein",
+  "First": "Guest",
+  "Last": "Visitor"
 },
 {
   "Username": "user",
-  "Password": "pass"
+  "Password": "pass",
+  "First": "John",
+  "Last": "Doe"
 },
 {
   "Username": "alice",
-  "Password": "x"
+  "Password": "x",
+  "First": "Alice",
+  "Last": "Carroll"
 }]

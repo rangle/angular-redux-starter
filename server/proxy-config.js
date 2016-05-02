@@ -17,9 +17,9 @@ module.exports = {
   // Calls to /api/foo will get routed to
   // http://jsonplaceholder.typicode.com/foo.
   
-  '/api/': {
-    target: 'https://ngcourse.herokuapp.com/',
-    changeOrigin: true,
-  },
+  // '/api/': {
+  //   target: 'http://jsonplaceholder.typicode.com',
+  //   changeOrigin: true,
+  // },
   
 };

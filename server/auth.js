@@ -1,26 +1,50 @@
-var fs = require("fs");
-var util = require('util');
+'use strict';
+
+const fs = require('fs');
+const util = require('util');
+const winston = require('winston');
+const denodeify = require('denodeify');
+const readFile = denodeify(fs.readFile);
 
 module.exports = (app) => {
-  var userFileData = fs.readFileSync("./server/users.json");
-  var users = JSON.parse(userFileData);
+  let users = [];
+  readFile('./server/users.json')
+  .then(userFileData => {
+    users = JSON.parse(userFileData);
+  })
+  .catch(err => {
+    users = [];
+    winston.error(err);
+    throw err;
+  });
 
-   app.post('/api/auth/login', (req,res)=>{
-    
-    users.map(u => console.log(u.Username));
+  // Note that we are only authenticating against a static JSON file.
+  // this should not be used for any production purpose.
+  app.post('/api/auth/login', (req,res)=>{
 
     if (req.body.username && req.body.password){
-      const filtered = users.filter(
+      const authorized = users.filter(
         function(user){
-          return (user.Username===req.body.username) 
-          && (user.Password===req.body.password);
+          return (user.Username === req.body.username)
+          && (user.Password === req.body.password);
         });
-      if (filtered.length>0)
-        res.status(200).send(JSON.stringify({data:{msg:"LOGIN SUCCESSFUL"},meta:{token:"abcd1234",expires:"2020-01-01"}}));
+      if (authorized.length > 0)
+        res.status(200).send(
+          JSON.stringify({
+            data: {
+              msg: 'LOGIN SUCCESSFUL'
+            },
+            meta: {
+              token: 'abcd1234',
+              expires: '2020-01-01',
+              first: authorized[0].First,
+              last: authorized[0].Last
+            }
+          }));
       else
-        res.status(401).send("ACCESS DENIED: Incorrect username or password.");
+        res.status(401).send('ACCESS DENIED: Incorrect username or password.');
     }
     else
-      res.status(401).send("ACCESS DENIED: Username or password was missing.");
+      res.status(401).send('ACCESS DENIED: Username or password was missing.');
    });
 };
