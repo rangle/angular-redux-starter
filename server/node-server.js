@@ -5,8 +5,11 @@ const winston = require('winston');
 const helmet = require('helmet');
 const nodeProxy = require('./node-proxy');
 const nodeAppServer = require('./node-app-server');
-const auth = require('./auth');
+const authPassport = require('./auth-passport');
 const bodyParser = require('body-parser');
+const users = [];
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 /**
  * Heroku-friendly production http server.
@@ -23,7 +26,23 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-auth(app);
+users = authPassport.readUsers();
+
+passport.use(new LocalStrategy(
+
+  function (username, password, done){
+    authPassport.authenticateUser(username, password, users)
+    .then ((authResult) => {
+      return done(null, authResult);
+    })
+    .then (null, (message) =>{
+      return done(null, false, message);
+    });
+  }
+
+));
+
+// auth(app);
 
 // API proxy logic: if you need to talk to a remote server from your client-side
 // app you can proxy it though here by editing ./proxy-config.js
