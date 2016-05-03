@@ -34,6 +34,7 @@ module.exports = {
               msg: 'LOGIN SUCCESSFUL'
             },
             meta: {
+              id: authorized[0].id,
               token: 'abcd1234',
               expires: '2020-01-01',
               first: authorized[0].First,
@@ -47,6 +48,14 @@ module.exports = {
         reject({message: 'INVALID REQUEST'});
       }
     });
-
   },
+
+  getUserById: function (id, users){
+    const results = users.filter(
+      function(user){
+        return (user.id === id);
+      });
+    return results.length > 0 ? results[0] : {};
+  },
+
 };

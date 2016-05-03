@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const expressSession = require('express-session');
 const winston = require('winston');
 const helmet = require('helmet');
 const nodeProxy = require('./node-proxy');
@@ -35,11 +36,14 @@ app.use(helmet());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(expressSession({ secret: 'diet coke'}));
+
 app.use(passport.initialize());
+app.use(passport.session());
 
 
 passport.use(new LocalStrategy(
-
   function (username, password, done){
     authPassport.authenticateUser(username, password, users)
     .then ((authResult) => {
@@ -52,9 +56,17 @@ passport.use(new LocalStrategy(
 
 ));
 
+passport.serializeUser(function(user, done) {
+  done(null, user.meta.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  done(null, authPassport.getUserById(id, users));
+});
+
 
 app.post('/api/auth/login',
-  passport.authenticate('local', { session: false }),
+  passport.authenticate('local'),
   function(req,res){
      res.status(200).send(JSON.stringify(req.user));
   }

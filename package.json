@@ -72,6 +72,7 @@
     "es6-promise": "^3.1.2",
     "es6-shim": "^0.35.0",
     "eslint": "^2.9.0",
+    "express-session": "^1.13.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.10.0",
