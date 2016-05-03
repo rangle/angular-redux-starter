@@ -26,7 +26,6 @@ authPassport.readUsers()
     users = _users;
   })
   .catch (err => {
-    console.log("Error", err);
     throw err;
   })
 
@@ -37,7 +36,7 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(expressSession({ secret: 'diet coke'}));
+app.use(expressSession({ secret: 'party parrot'}));
 
 app.use(passport.initialize());
 app.use(passport.session());
