@@ -43,7 +43,6 @@ passport.use(new LocalStrategy(
   function (username, password, done){
     authPassport.authenticateUser(username, password, users)
     .then ((authResult) => {
-      console.log("auth result", authResult)
       return done(null, authResult);
     })
     .then (null, (message) => {
@@ -55,9 +54,10 @@ passport.use(new LocalStrategy(
 
 
 app.post('/api/auth/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/',
-                                   failureFlash: true })
+  passport.authenticate('local', { session: false }),
+  function(req,res){
+     res.status(200).send(JSON.stringify(req.user));
+  }
 );
 
 
