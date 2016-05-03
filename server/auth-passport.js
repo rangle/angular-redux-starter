@@ -9,7 +9,7 @@ const readFile = denodeify(fs.readFile);
 module.exports = {
 
   readUsers: function() {
-    readFile('./server/users.json')
+    return readFile('./server/users.json')
     .then(userFileData => {
       return JSON.parse(userFileData);
     })
@@ -17,12 +17,11 @@ module.exports = {
       winston.error(err);
       throw err;
     });
-  };
+  },
 
   // Note that we are only authenticating against a static JSON file.
   // this should not be used for any production purpose.
   authenticateUser: function(username, password, users) {
-
     return new Promise(function(resolve, reject) {
       if (username && password) {
         const authorized = users.filter(
@@ -49,5 +48,5 @@ module.exports = {
       }
     });
 
-  };
+  },
 };

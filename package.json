@@ -91,6 +91,7 @@
     "mocha": "^2.4.5",
     "ng-redux": "^3.3.3",
     "ngcomponentrouter": "^2.0.0",
+    "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "postcss-cssnext": "^2.5.1",
     "postcss-import": "^8.0.2",
