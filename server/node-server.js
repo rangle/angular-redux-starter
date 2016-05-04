@@ -29,7 +29,6 @@ authPassport.readUsers()
     throw err;
   })
 
-
 // Enable various security helpers.
 app.use(helmet());
 
@@ -40,7 +39,6 @@ app.use(expressSession({ secret: 'party parrot'}));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 passport.use(new LocalStrategy(
   function (username, password, done){
@@ -63,15 +61,12 @@ passport.deserializeUser(function(id, done) {
   done(null, authPassport.getUserById(id, users));
 });
 
-
 app.post('/api/auth/login',
   passport.authenticate('local'),
   function(req,res){
      res.status(200).send(JSON.stringify(req.user));
   }
 );
-
-
 
 // API proxy logic: if you need to talk to a remote server from your client-side
 // app you can proxy it though here by editing ./proxy-config.js
