@@ -25,7 +25,7 @@ $ npm run dev
 
 This runs a development mode server with live reload etc.
 
-Open `http://localhost:3000` in your browser.
+Open `http://localhost:8080` in your browser.
 
 ### Production
 
