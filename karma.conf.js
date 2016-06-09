@@ -1,7 +1,8 @@
 'use strict';
 
 const loaders = require('./webpack/loaders');
-const webpack = require('webpack');
+const postcssInit = require('./webpack/postcss');
+
 module.exports = (config) => {
   config.set({
     frameworks: [
@@ -25,7 +26,7 @@ module.exports = (config) => {
 
     webpack: {
       entry: './src/tests.entry.ts',
-      devtool: 'source-map',
+      devtool: 'inline-source-map',
       verbose: true,
       resolve: {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
@@ -40,7 +41,8 @@ module.exports = (config) => {
       },
       stats: { colors: true, reasons: true },
       debug: true,
-      plugins: [new webpack.NoErrorsPlugin()],
+      plugins: [],
+      postcss: postcssInit,
     },
 
     webpackServer: {

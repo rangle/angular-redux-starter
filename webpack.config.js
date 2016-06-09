@@ -1,78 +1,13 @@
 'use strict';
 
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
-const SplitByPathPlugin = require('webpack-split-by-path');
-
-const basePlugins = [
-  new webpack.DefinePlugin({
-    __DEV__: process.env.NODE_ENV !== 'production',
-    __PRODUCTION__: process.env.NODE_ENV === 'production',
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-  }),
-  new SplitByPathPlugin([
-    { name: 'vendor', path: [__dirname + '/node_modules/'] },
-  ]),
-  new HtmlWebpackPlugin({
-    template: './src/index.html',
-    inject: 'body',
-  }),
-];
-
-const devPlugins = [
-  new webpack.NoErrorsPlugin(),
-  new StyleLintPlugin({
-    configFile: './.stylelintrc',
-    files: ['src/**/*.css'],
-    failOnError: false,
-  }),
-];
-
-const prodPlugins = [
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
-  }),
-  new webpack.NoErrorsPlugin(),
-];
-
-const plugins = basePlugins
-  .concat(process.env.NODE_ENV === 'production' ? prodPlugins : [])
-  .concat(process.env.NODE_ENV === 'development' ? devPlugins : []);
-
-const postcssBasePlugins = [
-  require('postcss-modules-local-by-default'),
-  require('postcss-import')({
-    addDependencyTo: webpack,
-  }),
-  require('postcss-cssnext')({
-    browsers: ['ie >= 8', 'last 2 versions'],
-  }),
-];
-const postcssDevPlugins = [];
-const postcssProdPlugins = [
-  require('cssnano')({
-    safe: true,
-    sourcemap: true,
-    autoprefixer: false,
-  }),
-];
-
-const postcssPlugins = postcssBasePlugins
-  .concat(process.env.NODE_ENV === 'production' ? postcssProdPlugins : [])
-  .concat(process.env.NODE_ENV === 'development' ? postcssDevPlugins : []);
+const plugins = require('./webpack/plugins');
+const postcssInit = require('./webpack/postcss');
 
 module.exports = {
-
-  entry: {
-    app: './src/index.ts',
-  },
-
+  entry: { app: './src/index.ts' },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].js',
@@ -88,6 +23,7 @@ module.exports = {
   },
 
   plugins: plugins,
+  postcss: postcssInit,
 
   devServer: {
     historyApiFallback: { index: '/' },
@@ -108,9 +44,5 @@ module.exports = {
       loaders.woff2,
       loaders.ttf,
     ],
-  },
-
-  postcss: function postcssInit() {
-    return postcssPlugins;
   },
 };
