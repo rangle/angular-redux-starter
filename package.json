@@ -123,7 +123,7 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.10.0",
-    "webpack-split-by-path": "0.0.9",
+    "webpack-split-by-path": "0.0.10",
     "winston": "^2.2.0"
   }
 }
