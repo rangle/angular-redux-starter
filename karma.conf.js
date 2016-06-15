@@ -1,5 +1,8 @@
 'use strict';
 
+process.env.TEST = true;
+
+const plugins = require('./webpack/plugins');
 const loaders = require('./webpack/loaders');
 const postcssInit = require('./webpack/postcss');
 
@@ -60,7 +63,7 @@ module.exports = (config) => {
       },
       stats: { colors: true, reasons: true },
       debug: false,
-      plugins: [],
+      plugins: plugins,
       postcss: postcssInit,
     },
 
