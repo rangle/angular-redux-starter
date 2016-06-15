@@ -1,6 +1,8 @@
+import 'babel-polyfill';
 import 'es5-shim';
 import 'es6-shim';
 import 'es6-promise';
+import 'ts-helper';
 
 import * as angular from 'angular';
 
@@ -84,7 +86,11 @@ angular.module('app', [
   .service('AuthenticationService', AuthenticationService)
   .service('AuthenticationActions', AuthenticationActions);
 
-angular.element(document).ready(
-  () => angular.bootstrap(document, ['app'])
-);
+declare const __TEST__: boolean;
+
+if (!__TEST__) {
+  angular.element(document).ready(
+    () => angular.bootstrap(document, ['app'])
+  );
+}
 
