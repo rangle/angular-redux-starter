@@ -4,7 +4,7 @@ export class RioContainer {
 
   static options: ng.IComponentOptions = {
     bindings: {
-      testid:'@',
+      testid: '@',
       size: '=',
       center: '='
     },
