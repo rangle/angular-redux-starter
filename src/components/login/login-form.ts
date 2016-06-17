@@ -17,18 +17,20 @@ export class RioLoginForm {
 
         <rio-alert
           status="error"
+          testid="alert-pending"
           ng-if="loginFormCtrl.isPending">
           Loading...
         </rio-alert>
 
         <rio-alert
           qaid="qa-alert"
+          testid="alert-error"
           status="error"
           ng-if="loginFormCtrl.hasError">
           Invalid username and password
         </rio-alert>
 
-        <rio-form-group>
+        <rio-form-group testid="login-username">
           <rio-label qaid="qa-uname-label">Username</rio-label>
           <rio-input
             qaid="qa-uname-input"
@@ -45,7 +47,7 @@ export class RioLoginForm {
           </rio-form-error>
         </rio-form-group>
 
-        <rio-form-group>
+        <rio-form-group testid="login-password">
           <rio-label qaid="qa-password-label">Password</rio-label>
           <rio-input
             qaid="qa-password-input"
@@ -64,13 +66,14 @@ export class RioLoginForm {
           </rio-form-error>
         </rio-form-group>
 
-        <rio-form-group>
+        <rio-form-group testid="login-submit">
           <rio-button
             qaid="qa-login-button"
             type="submit"
             class-name="mr1">Login</rio-button>
           <rio-button
             qiad="qa-clear-button"
+            type="reset"
             class-name="bg-red"
             ng-click="loginFormCtrl.clear()">
             Clear

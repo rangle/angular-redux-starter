@@ -6,13 +6,16 @@ export class RioNavigatorItem {
     transclude: true,
     controllerAs: 'navigatorItemCtrl',
     bindings: {
+      testid: '@',
       mr: '<',
       ml: '<'
     },
     template: `
-      <div class="truncate" 
-          ng-class="{'ml2': navigatorItemCtrl.ml, 'mr2': navigatorItemCtrl.mr}" 
-          ng-transclude>
+      <div
+        class="truncate"
+        data-testid="{{navigatorItemCtrl.testid}}"
+        ng-class="{'ml2': navigatorItemCtrl.ml, 'mr2': navigatorItemCtrl.mr}" 
+        ng-transclude>
       </div>
     `
   };

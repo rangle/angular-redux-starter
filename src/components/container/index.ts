@@ -4,6 +4,7 @@ export class RioContainer {
 
   static options: ng.IComponentOptions = {
     bindings: {
+      testid:'@',
       size: '=',
       center: '='
     },
@@ -12,6 +13,7 @@ export class RioContainer {
     controllerAs: 'containerCtrl',
     template: `
       <div
+        data-testid="{{containerCtrl.testid}}"
         class="clearFix px1"
         ng-class="containerCtrl.classes">
         <div ng-transclude></div>

@@ -6,6 +6,7 @@ export class RioAlert {
     transclude: true,
     bindings: {
       qaid: '@',
+      testid: '@',
       status: '@'
     },
     controller: RioAlert,
@@ -13,6 +14,7 @@ export class RioAlert {
     template: `
       <div ng-attr-id="{{alertCtrl.qaid}}"
         class="p2 bold"
+        data-testid="{{alertCtrl.testid}}"
         ng-class="alertCtrl.componentColour"
         ng-transclude>
       </div>

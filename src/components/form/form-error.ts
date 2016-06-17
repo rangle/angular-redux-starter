@@ -4,13 +4,15 @@ export class RioFormError {
 
   static options: ng.IComponentOptions = {
     bindings: {
-      qaid: '@'
+      qaid: '@',
+      testid: '@',
     },
     controller: RioFormError,
     controllerAs: 'errorCtrl',
     transclude: true,
     template: `
       <div
+        data-testid="{{errorCtrl.testid || 'form-error'}}"
         ng-attr-id="{{errorCtrl.qaid}}"
         class="bold black" ng-transclude>
       </div>

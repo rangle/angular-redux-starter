@@ -4,8 +4,14 @@ export class RioFormGroup {
 
   static options: ng.IComponentOptions = {
     transclude: true,
+    bindings: {
+      testid: '@',
+    },
+    controllerAs: 'formGroupCtrl',
     template: `
-      <div class="py2">
+      <div
+        data-testid="{{formGroupCtrl.testid}}"
+        class="py2">
         <ng-transclude></ng-transclude>
       </div>
     `

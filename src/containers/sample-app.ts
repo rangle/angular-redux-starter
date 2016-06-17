@@ -15,7 +15,7 @@ export class RioSampleApp {
           is-pending="appCtrl.session.get('isLoading', false)"
           ng-if="!appCtrl.isLoggedIn">
         </rio-login-modal>
-        <rio-navigator>
+        <rio-navigator testid="navigator">
           <rio-navigator-item mr="true">
             <rio-logo></rio-logo>
           </rio-navigator-item>
@@ -27,7 +27,7 @@ export class RioSampleApp {
             <a ng-link="['About']" class="text-decoration-none">About Us</a>
           </rio-navigator-item>
           <div class="flex flex-auto"></div>
-          <rio-navigator-item mr="true">
+          <rio-navigator-item testid="user-profile" mr="true">
             {{
               appCtrl.session.getIn(['user', 'firstName'], '') + ' ' +
               appCtrl.session.getIn(['user', 'lastName'], '') }}
