@@ -18,7 +18,7 @@ test:
     - npm run build
     - npm start:
         background: true
-    # uncomment when running on browser stack using http://localhost
+    #uncomment when running on browser stack using http://localhost
     # DON'T FORGET TO REPLACE THE BROWSERSTACK KEY
     # download and unzip browserstack local client
     #- curl -O https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
