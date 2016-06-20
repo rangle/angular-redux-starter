@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const SplitByPathPlugin = require('webpack-split-by-path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
 
 const sourceMap = process.env.TEST
   ? [new webpack.SourceMapDevToolPlugin({ filename: null, test: /\.ts$/ })]
@@ -18,7 +19,7 @@ const basePlugins = [
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
   new SplitByPathPlugin([
-    { name: 'vendor', path: [__dirname + '/node_modules/'] },
+    { name: 'vendor', path: [path.join(__dirname, '../', '/node_modules/')] },
   ]),
   new HtmlWebpackPlugin({
     template: './src/index.html',
