@@ -109,7 +109,7 @@
     "postcss-cssnext": "^2.5.1",
     "postcss-import": "^8.1.1",
     "postcss-loader": "^0.9.1",
-    "postcss-modules-local-by-default": "^1.0.1",
+    "postcss-modules-local-by-default": "^1.1.0",
     "ramda": "^0.21.0",
     "raw-loader": "^0.5.1",
     "redux": "^3.5.2",
