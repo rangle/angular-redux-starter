@@ -24,6 +24,7 @@ module.exports = (config) => {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
+      'karma-remap-istanbul',
       'karma-mocha-reporter',
       'karma-spec-reporter',
       'karma-chrome-launcher',
@@ -46,7 +47,7 @@ module.exports = (config) => {
       ],
       './src/**/!(*.test|tests.*).(ts|js)': [
         'sourcemap',
-      ].concat(coverage),
+      ],
     },
 
     webpack: {
@@ -72,9 +73,17 @@ module.exports = (config) => {
       noInfo: true, // prevent console spamming when running in Karma!
     },
 
-    reporters: ['mocha'].concat(coverage),
+    reporters: ['mocha']
+     .concat(coverage)
+     .concat(coverage.length > 0 ? ['karma-remap-istanbul'] : []),
 
-    // only output json report to be remapped by remap-istanbul
+    remapIstanbulReporter: {
+      src: 'coverage/chrome/coverage-final.json',
+      reports: {
+        html: 'coverage',
+      },
+    },
+
     coverageReporter: {
       reporters: [
         { type: 'json' },
