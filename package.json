@@ -106,7 +106,7 @@
     "nodemon": "^1.9.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "postcss-cssnext": "^2.5.1",
+    "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.1.1",
     "postcss-loader": "^0.9.1",
     "postcss-modules-local-by-default": "^1.1.0",
