@@ -93,7 +93,7 @@
     "karma-coverage": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-mocha": "^1.0.1",
-    "karma-mocha-reporter": "^2.0.4",
+    "karma-mocha-reporter": "^2.1.0",
     "karma-remap-istanbul": "^0.1.0",
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
