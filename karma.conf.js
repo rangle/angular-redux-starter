@@ -2,30 +2,25 @@
 
 process.env.TEST = true;
 
-const plugins = require('./webpack/plugins');
 const loaders = require('./webpack/loaders');
 const postcssInit = require('./webpack/postcss');
+const plugins = require('./webpack/plugins');
 
 module.exports = (config) => {
   const coverage = config.singleRun ? ['coverage'] : [];
 
   config.set({
     frameworks: [
-      'chai',
-      'sinon',
       'jasmine',
     ],
 
     plugins: [
-      'karma-chai',
-      'karma-sinon',
       'karma-jasmine',
       'karma-sourcemap-writer',
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
       'karma-remap-istanbul',
-      'karma-mocha-reporter',
       'karma-spec-reporter',
       'karma-chrome-launcher',
     ],
@@ -51,6 +46,8 @@ module.exports = (config) => {
     },
 
     webpack: {
+      plugins,
+      postcss: postcssInit,
       entry: './src/tests.entry.ts',
       devtool: 'inline-source-map',
       verbose: false,
@@ -65,17 +62,15 @@ module.exports = (config) => {
       },
       stats: { colors: true, reasons: true },
       debug: false,
-      plugins: plugins,
-      postcss: postcssInit,
     },
 
     webpackServer: {
       noInfo: true, // prevent console spamming when running in Karma!
     },
 
-    reporters: ['mocha']
-     .concat(coverage)
-     .concat(coverage.length > 0 ? ['karma-remap-istanbul'] : []),
+    reporters: ['spec']
+      .concat(coverage)
+      .concat(coverage.length > 0 ? ['karma-remap-istanbul'] : []),
 
     remapIstanbulReporter: {
       src: 'coverage/chrome/coverage-final.json',

@@ -9,19 +9,18 @@ const postcssInit = require('./webpack/postcss');
 module.exports = {
   entry: { app: './src/index.ts' },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
     publicPath: '/',
     sourceMapFilename: '[name].[hash].js.map',
     chunkFilename: '[id].chunk.js',
   },
 
-  devtool: 'source-map',
+  devtool: process.env.NODE_ENV === 'production' ?
+    'source-map' :
+    'inline-source-map',
 
-  resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
-  },
-
+  resolve: { extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'] },
   plugins: plugins,
   postcss: postcssInit,
 
