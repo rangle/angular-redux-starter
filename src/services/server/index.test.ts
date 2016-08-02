@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {ServerService} from './';
 
 describe('ServerService', () => {
@@ -34,19 +33,19 @@ describe('ServerService', () => {
   });
 
   it('should load', () => {
-    expect(_mockHttpService).to.not.be.undefined;
+    expect(_mockHttpService).not.toBeUndefined();
     let serverService = new ServerService(_mockHttpService);
 
-    expect(serverService.get(_mockPath)).to.not.be.undefined;
+    expect(serverService.get(_mockPath)).not.toBeUndefined();
   });
 
   it('should receive successful response to GET request', () => {
-    expect(_mockHttpService).to.not.be.undefined;
+    expect(_mockHttpService).not.toBeUndefined();
     let serverService = new ServerService(_mockHttpService);
 
     return serverService.get(_mockPath)
       .then(data => {
-        expect(data).to.deep.equal(_mockResponseData);
+        expect(data).toEqual(_mockResponseData);
       });
   });
 
@@ -61,45 +60,41 @@ describe('ServerService', () => {
       }
     };
 
-    expect(_mockHttpService).to.not.be.undefined;
+    expect(_mockHttpService).not.toBeUndefined();
     let serverService = new ServerService(_mockHttpService);
+    let error;
 
     return serverService.post(_mockPath, _mockSentData)
-      .then(data => {
-        throw new Error('Auth should fail, but it seems to have succeeded.');
-      })
-      .then(null, error => {
-        // catch and suppress error, it is what we want.
+      .then(null, err => error = err)
+      .then(() => {
+        expect(error).not.toBeUndefined();
       });
   });
 
   it('should receive successful response to POST request', () => {
-    expect(_mockHttpService).to.not.be.undefined;
     let serverService = new ServerService(_mockHttpService);
 
     return serverService.post(_mockPath, _mockSentData)
       .then(data => {
-        expect(data).to.deep.equal(_mockResponseData);
+        expect(data).toEqual(_mockResponseData);
       });
   });
 
   it('should receive successful response to PUT request', () => {
-    expect(_mockHttpService).to.not.be.undefined;
     let serverService = new ServerService(_mockHttpService);
 
     return serverService.put(_mockPath, _mockId, _mockSentData)
       .then(data => {
-        expect(data).to.deep.equal(_mockResponseData);
+        expect(data).toEqual(_mockResponseData);
       });
   });
 
   it('should receive successful response to DELETE request', () => {
-    expect(_mockHttpService).to.not.be.undefined;
     let serverService = new ServerService(_mockHttpService);
 
     return serverService.delete(_mockPath, _mockId)
       .then(data => {
-        expect(data).to.deep.equal(_mockResponseData);
+        expect(data).toEqual(_mockResponseData);
       });
   });
 });

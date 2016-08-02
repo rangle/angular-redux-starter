@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {AuthenticationService} from './';
 
 describe('AuthenticationService', () => {
@@ -16,11 +15,10 @@ describe('AuthenticationService', () => {
   });
 
   it('should load', () => {
-    
-    expect(_mockServerService).to.not.be.undefined;
+    expect(_mockServerService).not.toBeUndefined();
     let authService = new AuthenticationService(_mockServerService);
 
-    expect(authService.login(_mockCreds)).to.not.be.undefined;
+    expect(authService.login(_mockCreds)).not.toBeUndefined;
   });
 
   it('should receive successful response', () => {
@@ -35,17 +33,17 @@ describe('AuthenticationService', () => {
       },
     };
 
-    expect(_mockServerService).to.not.be.undefined;
+    expect(_mockServerService).not.toBeUndefined();
     let authService = new AuthenticationService(_mockServerService);
-    
+
     return authService.login(_mockCreds)
       .then(data => {
-        expect(data).to.deep.equal(_mockResponse);
+        expect(data).toEqual(_mockResponse);
       });
   });
 
   it('should encounter an error', () => {
-    
+
     _mockResponse = {
       status: 401,
       statusText: 'unauthorized',
@@ -56,15 +54,14 @@ describe('AuthenticationService', () => {
       }
     };
 
-    expect(_mockServerService).to.not.be.undefined;
+    expect(_mockServerService).not.toBeUndefined();
     let authService = new AuthenticationService(_mockServerService);
-    
+
+    let error;
     return authService.login(_mockCreds)
-      .then(data => {
-        throw new Error('Login should fail.');
-      })
-      .then(null, error => {
-        // catch and suppress error
+      .then(null, err => error = err)
+      .then(() => {
+        expect(error).not.toBeUndefined;
       });
   });
 });
