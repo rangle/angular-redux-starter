@@ -15,7 +15,8 @@
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,
     "useCache": false,
-    "emitRequireType": false
+    "emitRequireType": false,
+    "forkChecker": true
   },
   "exclude": [
     "node_modules",
