@@ -10,10 +10,13 @@ module.exports = {
   entry: { app: './src/index.ts' },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js',
+    filename: process.env.NODE_ENV === 'production' ?
+      '[name].[chunkhash].js' : '[name].js',
     publicPath: '/',
-    sourceMapFilename: '[name].[hash].js.map',
-    chunkFilename: '[id].chunk.js',
+    sourceMapFilename: process.env.NODE_ENV === 'production' ?
+      '[name].[chunkhash].js.map' : '[name].js.map',
+    chunkFilename: process.env.NODE_ENV === 'production' ?
+      '[name].chunk.[chunkhash].js' : '[name].js',
   },
 
   devtool: process.env.NODE_ENV === 'production' ?
