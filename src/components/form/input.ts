@@ -17,7 +17,7 @@ export class RioInput {
       <input
         ng-attr-id="{{inputCtrl.qaid}}"
         name="{{inputCtrl.inputName}}"
-        class="block col-12 mb1 input"
+        class="pa2 input-reset ba b--black-30 bg-transparent w-100 mb3 br2"
         type="{{inputCtrl.type || 'text'}}"
         placeholder="{{inputCtrl.placeholder}}"
         ng-model="inputCtrl.ngModel"

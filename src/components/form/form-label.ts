@@ -10,7 +10,8 @@ export class RioLabel {
     controllerAs: 'labelCtrl',
     transclude: true,
     template: `
-      <label ng-attr-id="{{labelCtrl.qaid}}"
+      <label class="db fw6 lh-copy f6"
+        ng-attr-id="{{labelCtrl.qaid}}"
         ng-transclude>
       </label>
     `
