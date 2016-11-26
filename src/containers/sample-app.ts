@@ -21,10 +21,10 @@ export class RioSampleApp {
           </rio-navigator-item>
 
           <rio-navigator-item ng-if="appCtrl.isLoggedIn" mr="true">
-            <a ng-link="['Counter']" class="text-decoration-none">Counter</a>
+            <a ng-link="['Counter']" class="link">Counter</a>
           </rio-navigator-item>
           <rio-navigator-item ng-if="appCtrl.isLoggedIn">
-            <a ng-link="['About']" class="text-decoration-none">About Us</a>
+            <a ng-link="['About']" class="link">About Us</a>
           </rio-navigator-item>
           <div class="flex flex-auto"></div>
           <rio-navigator-item testid="user-profile" mr="true">
@@ -64,7 +64,7 @@ export class RioSampleApp {
     'AuthenticationActions'
   ];
 
-  constructor($ngRedux, 
+  constructor($ngRedux,
     $scope: ng.IScope,
     private authenticationActions: AuthenticationActions
   ) {
@@ -83,7 +83,7 @@ export class RioSampleApp {
 
   mapDispatchToThis(dispatch) {
     return {
-      login: (credentials) => 
+      login: (credentials) =>
         dispatch(this.authenticationActions.loginUser(credentials)),
       logout: () => dispatch(this.authenticationActions.logoutUser())
     };

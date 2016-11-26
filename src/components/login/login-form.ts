@@ -70,7 +70,7 @@ export class RioLoginForm {
           <rio-button
             qaid="qa-login-button"
             type="submit"
-            class-name="mr1">Login</rio-button>
+            class-name="mr2">Login</rio-button>
           <rio-button
             qiad="qa-clear-button"
             type="reset"

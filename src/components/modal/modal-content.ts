@@ -9,7 +9,7 @@ export class RioModalContent {
     template: `
       <div
         ng-class="modalContentCtrl.styles.modal"
-        class="p2 z2 bg-white modal relative"
+        class="pa3 z-2 bg-white modal relative"
         ng-transclude></div>
     `
   };

@@ -11,23 +11,22 @@ export class RioCounter {
     controller: RioCounter,
     controllerAs: 'counterCtrl',
     template: `
-      <div class="flex">
+      <div class="flex items-center">
         <rio-button
           testid="counter-decrementButton"
-          class-name="bg-black col-0"
+          class-name="bg-red"
           on-click="counterCtrl.decrement()">
           -
         </rio-button>
 
         <div
           data-testid="counter-result"
-          class="flex-auto flex-center center h1">
+          class="flex-auto items-center tc f1">
           {{ counterCtrl.value }}
         </div>
 
         <rio-button
           testid="counter-incrementButton"
-          class-name="col-0"
           on-click="counterCtrl.increment()">
           +
         </rio-button>

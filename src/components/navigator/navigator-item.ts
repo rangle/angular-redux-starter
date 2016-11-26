@@ -14,7 +14,7 @@ export class RioNavigatorItem {
       <div
         class="truncate"
         data-testid="{{navigatorItemCtrl.testid}}"
-        ng-class="{'ml2': navigatorItemCtrl.ml, 'mr2': navigatorItemCtrl.mr}" 
+        ng-class="{'ml3': navigatorItemCtrl.ml, 'mr3': navigatorItemCtrl.mr}"
         ng-transclude>
       </div>
     `
