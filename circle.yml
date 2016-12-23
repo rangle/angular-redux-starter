@@ -1,7 +1,9 @@
 machine:
   python:
     version: 2.7.9
-
+  environment:
+    YARN_VERSION: 0.18.0
+    PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
   node:
     version: 6
 
@@ -12,24 +14,31 @@ dependencies:
     - pip install robotframework-selenium2library==1.7.4
     # Clean out node-modules to prevent issues with circle-ci's caching.
     - rm -rf node_modules
-
+    - |
+      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
+        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+      fi
+  override:
+    - yarn install
 test:
+  override:
+    - yarn test
   post:
-    - npm run build
-    - npm start:
+    - yarn build
+    - yarn start:
         background: true
     #uncomment when running on browser stack using http://localhost
     # DON'T FORGET TO REPLACE THE BROWSERSTACK KEY
     # download and unzip browserstack local client
-    #- curl -O https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
-    #- unzip ./BrowserStackLocal-linux-x64.zip -d browserstack
-    #- rm ./BrowserStackLocal-linux-x64.zip
-    #- touch ./e2e/robot/results/browserstack.txt
-    #- ./browserstack/BrowserStackLocal -force -forcelocal REPLACE_THIS_WITH_BROWSERSTACK_KEY &> ./e2e/robot/results/browserstack.txt:
+    # - curl -O https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
+    # - unzip ./BrowserStackLocal-linux-x64.zip -d browserstack
+    # - rm ./BrowserStackLocal-linux-x64.zip
+    # - touch ./e2e/robot/results/browserstack.txt
+    # - ./browserstack/BrowserStackLocal -force -forcelocal REPLACE_THIS_WITH_BROWSERSTACK_KEY &> ./e2e/robot/results/browserstack.txt:
     #    background: true
-    #- sleep 5
-    #- ./e2d/robot/exec/run_all_on_browserstack_desktop_ie.bash
-    #- ./e2e/robot/exec/run_smoke_on_local_chrome.bash
+    # - sleep 5
+    # - ./e2d/robot/exec/run_all_on_browserstack_desktop_ie.bash
+    # - ./e2e/robot/exec/run_smoke_on_local_chrome.bash
     - ./e2e/robot/exec/run_all_on_local_chrome.bash
 
 general:
