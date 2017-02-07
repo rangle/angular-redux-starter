@@ -23,7 +23,7 @@ export class RioForm {
   private onSubmit: Function;
   private name;
 
-  handleSubmit(form) {
+  handleSubmit() {
     this.onSubmit({ form: this.name });
   }
 }

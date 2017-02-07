@@ -8,7 +8,7 @@ describe('AuthenticationService', () => {
   beforeEach(() => {
     _mockCreds = { username: 'alice', password: 'x'};
     _mockServerService = {
-      post: (path, data) => {
+      post: () => {
         return Promise.resolve({ data: _mockResponse });
       }
     };
@@ -49,7 +49,7 @@ describe('AuthenticationService', () => {
       statusText: 'unauthorized',
     };
     _mockServerService = {
-      post: (path, data) => { 
+      post: () => {
         return Promise.reject({ data: _mockResponse });
       }
     };

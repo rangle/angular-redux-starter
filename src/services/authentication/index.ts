@@ -1,7 +1,4 @@
-import Inject from '../../utils/di';
 import {ServerService} from '../../services';
-
-const TOKEN_KEY = 'ngcourse-token';
 
 export class AuthenticationService {
 

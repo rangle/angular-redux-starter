@@ -4,10 +4,13 @@ const path = require('path');
 const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
 const plugins = require('./webpack/plugins');
-const postcssInit = require('./webpack/postcss');
 
 module.exports = {
-  entry: { app: './src/index.ts' },
+  entry: {
+    app: './src/index.ts',
+    vendor: './src/vendor.ts',
+  },
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: process.env.NODE_ENV === 'production' ?
@@ -23,9 +26,8 @@ module.exports = {
     'source-map' :
     'inline-source-map',
 
-  resolve: { extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'] },
+  resolve: { extensions: ['.webpack.js', '.web.js', '.ts', '.js'] },
   plugins: plugins,
-  postcss: postcssInit,
 
   devServer: {
     historyApiFallback: { index: '/' },
@@ -33,10 +35,8 @@ module.exports = {
   },
 
   module: {
-    preLoaders: [
+    rules: [
       loaders.tslint,
-    ],
-    loaders: [
       loaders.ts,
       loaders.html,
       loaders.css,

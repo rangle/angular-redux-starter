@@ -1,11 +1,11 @@
-declare let __DEV__: any;
+declare const __DEV__: any;
 import {Iterable} from 'immutable';
 const createLogger = require('redux-logger');
 
 const logger = createLogger({
     level: 'info',
     collapsed: true,
-    predicate: (getState, action) => __DEV__ === true,
+    predicate: () => __DEV__ === true,
     stateTransformer: (state) => {
         let newState = {};
         for (let i of Object.keys(state)) {

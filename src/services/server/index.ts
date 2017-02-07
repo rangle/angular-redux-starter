@@ -1,5 +1,3 @@
-import Inject from '../../utils/di';
-
 export class ServerService {
 
   static $inject = [
@@ -17,7 +15,7 @@ export class ServerService {
     private $http: angular.IHttpService
   ) { }
 
-  public get(path, id?) {
+  public get(path) {
     return this.$http.get(this.BASE_URL + path)
       .then(response => response.data);
   }

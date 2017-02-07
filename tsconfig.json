@@ -2,21 +2,28 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": false,
     "inlineSourceMap": true,
-    "noEmitHelpers": true
+    "noEmitHelpers": true,
+    "types":[
+      "node",
+      "jasmine",
+      "core-js",
+      "jquery",
+      "angular",
+      "angular-mocks"
+    ]
   },
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,
-    "useCache": false,
-    "emitRequireType": false,
-    "forkChecker": true
+    "useCache": false
   },
   "exclude": [
     "node_modules",

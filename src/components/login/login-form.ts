@@ -103,7 +103,7 @@ export class RioLoginForm {
       && this.loginForm.password.$error.required;
   }
 
-  handleSubmit(form) {
+  handleSubmit() {
     this.loginForm.username.$setTouched(true);
     this.loginForm.password.$setTouched(true);
 

@@ -17,16 +17,16 @@ describe('ServerService', () => {
       'value': 'Some response value here.',
     };
     _mockHttpService = {
-      get: (path) => {
+      get: () => {
         return Promise.resolve({ data: _mockResponseData });
       },
-      post: (path, data) => {
+      post: () => {
         return Promise.resolve( _mockResponseData );
       },
-      put: (path, data) => {
+      put: () => {
         return Promise.resolve( _mockResponseData );
       },
-      delete: (path) => {
+      delete: () => {
         return Promise.resolve( _mockResponseData );
       },
     };
@@ -55,7 +55,7 @@ describe('ServerService', () => {
       statusText: 'server error',
     };
     _mockHttpService = {
-      post: (path, data) => { 
+      post: () => {
         return Promise.reject({ data: _mockResponseData });
       }
     };

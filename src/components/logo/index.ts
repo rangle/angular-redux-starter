@@ -15,6 +15,6 @@ export class RioLogo {
     `
   };
 
-  private logoImage = require('../../assets/rangleio-logo.svg');
-  private styles = require('./logo.css');
+  public logoImage = require('../../assets/rangleio-logo.svg');
+  public styles = require('./logo.css');
 }

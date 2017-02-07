@@ -14,5 +14,5 @@ export class RioModalContent {
     `
   };
 
-  private styles = require('./modal.css');
+  public styles = require('./modal.css');
 }
