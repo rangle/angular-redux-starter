@@ -12,14 +12,8 @@ dependencies:
     - pip install robotframework==3.0
     - pip install robotframework-requests==0.4.4
     - pip install robotframework-selenium2library==1.7.4
-    # Clean out node-modules to prevent issues with circle-ci's caching.
-    - rm -rf node_modules
-    - |
-      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
-        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
-      fi
   override:
-    - yarn install
+    - yarn
 test:
   override:
     - yarn test
