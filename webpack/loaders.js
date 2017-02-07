@@ -1,13 +1,15 @@
 'use strict';
 
 exports.tslint = {
+  enforce: 'pre',
   test: /\.ts$/,
-  loader: 'tslint',
+  loader: 'tslint-loader',
   exclude: /node_modules/,
 };
 
 exports.istanbulInstrumenter = {
-  test: /^(.(?!\.test))*\.ts$/,
+  enforce: 'post',
+  test: /^(.(?!\.spec))*\.ts$/,
   loader: 'istanbul-instrumenter-loader',
 };
 
@@ -19,13 +21,13 @@ exports.ts = {
 
 exports.html = {
   test: /\.html$/,
-  loader: 'raw',
+  loader: 'raw-loader',
   exclude: /node_modules/,
 };
 
 exports.css = {
   test: /\.css$/,
-  loader: 'style!css?-minimize!postcss',
+  loader: 'style-loader!css-loader?-minimize!postcss-loader',
   exclude: /node_modules/,
 };
 
@@ -38,7 +40,7 @@ exports.ttf = makeUrlLoader(/\.ttf$/);
 function makeUrlLoader(pattern) {
   return {
     test: pattern,
-    loader: 'url',
+    loader: 'url-loader',
     exclude: /node_modules/,
   };
 }

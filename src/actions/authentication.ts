@@ -1,5 +1,3 @@
-import Inject from '../utils/di';
-
 import {AuthenticationService} from '../services';
 
 import {
@@ -18,9 +16,7 @@ export class AuthenticationActions {
   ) { }
 
   loginUser(credentials) {
-    return (dispatch, getState) => {
-      const username = credentials.username;
-      const password = credentials.password;
+    return (dispatch) => {
 
       this.authService.login(credentials)
       .then((data) => {
@@ -35,7 +31,7 @@ export class AuthenticationActions {
           }
         });
       })
-      .then(null, (error) => {
+      .then(null, () => {
         dispatch({
           type: LOGIN_USER_ERROR,
         });

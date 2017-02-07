@@ -1,12 +1,6 @@
-import 'babel-polyfill';
-import 'es5-shim';
-import 'es6-shim';
-import 'es6-promise';
-import 'ts-helper';
-
 import * as angular from 'angular';
+import 'ts-helpers';
 
-import 'ngcomponentrouter';
 import './store/configure-store';
 
 import {AuthenticationActions} from './actions/authentication';
@@ -93,4 +87,3 @@ if (!__TEST__) {
     () => angular.bootstrap(document, ['app'])
   );
 }
-

@@ -29,6 +29,6 @@ export class RioButton {
   static $inject = ['$element'];
 
   constructor(private $element: JQuery) {
-    $element.addClass('input-reset');
+    this.$element.addClass('input-reset');
   }
 }

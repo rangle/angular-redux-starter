@@ -1,8 +1,14 @@
-///<reference path="./dev-types.d.ts"/>
+declare const __DEV__: boolean;
+
+// A hack for the Redux DevTools Chrome extension.
+interface Window {
+  devToolsExtension?: () => void;
+}
 
 import {fromJS} from 'immutable';
+import * as angular from 'angular';
+import 'ng-redux';
 const ReduxThunk = require('redux-thunk').default;
-const ngRedux = require('ng-redux');
 const persistState = require('redux-localstorage');
 
 import logger from './configure-logger';
@@ -35,8 +41,8 @@ function _getEnhancers() {
     persistState('session', _getStorageConfig())
   ];
 
-  if (__DEV__ && window.devToolsExtension) {
-    enhancers = [...enhancers, window.devToolsExtension()];
+  if (__DEV__ && (window as Window).devToolsExtension) {
+    enhancers = [...enhancers, (window as Window).devToolsExtension()];
   }
 
   return enhancers;

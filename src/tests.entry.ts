@@ -1,11 +1,19 @@
-import './index.ts';
+'use strict';
 
-const testContext = (<{ context?: Function }>require)
-  .context('./', true, /\.test\.ts$/);
+import 'core-js/es6';
+import 'ts-helpers';
+
+declare interface Require {
+  context: Function;
+}
+
+declare const require: Require;
+
+const testContext = require.context('./', true, /^(.(?!tests\.entry))*\.ts$/);
 
 testContext.keys().forEach(
   key => {
-    if (/\.test\.ts$/.test(key)) {
+    if (/\.spec\.ts$/.test(key)) {
       testContext(key);
     }
   });

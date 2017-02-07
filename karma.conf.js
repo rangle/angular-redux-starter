@@ -3,13 +3,13 @@
 process.env.TEST = true;
 
 const loaders = require('./webpack/loaders');
-const postcssInit = require('./webpack/postcss');
 const plugins = require('./webpack/plugins');
 
 module.exports = (config) => {
   const coverage = config.singleRun ? ['coverage'] : [];
 
   config.set({
+    mime: { 'text/x-typescript': ['ts', 'tsx'] },
     frameworks: [
       'jasmine',
     ],
@@ -20,7 +20,7 @@ module.exports = (config) => {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-coverage',
-      'karma-remap-istanbul',
+      'karma-remap-coverage',
       'karma-spec-reporter',
       'karma-chrome-launcher',
     ],
@@ -40,28 +40,27 @@ module.exports = (config) => {
         'webpack',
         'sourcemap',
       ],
-      './src/**/!(*.test|tests.*).(ts|js)': [
+      './src/**/!(*.spec).(ts|js)': [
         'sourcemap',
       ],
     },
 
     webpack: {
-      plugins,
-      postcss: postcssInit,
       entry: './src/tests.entry.ts',
       devtool: 'inline-source-map',
-      verbose: false,
       resolve: {
-        extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
+        extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
       },
       module: {
-        loaders: combinedLoaders(),
-        postLoaders: config.singleRun
-          ? [ loaders.istanbulInstrumenter ]
-          : [ ],
+        rules: [
+          loaders.ts,
+          loaders.html,
+          { test: /\.(css|svg|eot|woff|woff2|ttf)/, use: 'null-loader' },
+          config.singleRun ? loaders.istanbulInstrumenter : undefined,
+        ],
       },
       stats: { colors: true, reasons: true },
-      debug: false,
+      plugins,
     },
 
     webpackServer: {
@@ -70,23 +69,30 @@ module.exports = (config) => {
 
     reporters: ['spec']
       .concat(coverage)
-      .concat(coverage.length > 0 ? ['karma-remap-istanbul'] : []),
+      .concat(coverage.length > 0 ? ['remap-coverage'] : []),
 
-    remapIstanbulReporter: {
-      src: 'coverage/chrome/coverage-final.json',
-      reports: {
-        html: 'coverage',
+    // only output json report to be remapped by remap-istanbul
+    coverageReporter: {
+      type: 'in-memory',
+      check: {
+        global: {
+          statements: 50,
+          branches: 50,
+          functions: 50,
+          lines: 50,
+        },
+        each: {
+          statements: 50,
+          branches: 50,
+          functions: 50,
+          lines: 50,
+        },
       },
     },
 
-    coverageReporter: {
-      reporters: [
-        { type: 'json' },
-      ],
-      dir: './coverage/',
-      subdir: (browser) => {
-        return browser.toLowerCase().split(/[ /-]/)[0]; // returns 'chrome'
-      },
+    remapCoverageReporter: {
+      html: './coverage',
+      json: './coverage/coverage.json',
     },
 
     port: 9999,
@@ -97,21 +103,3 @@ module.exports = (config) => {
     captureTimeout: 6000,
   });
 };
-
-function combinedLoaders() {
-  return Object.keys(loaders).reduce(function reduce(aggregate, k) {
-    switch (k) {
-    case 'istanbulInstrumenter':
-    case 'tslint':
-      return aggregate;
-    case 'ts':
-    case 'tsTest':
-      return aggregate.concat([ // force inline source maps
-        Object.assign(loaders[k],
-          { query: { babelOptions: { sourceMaps: 'both' } } })]);
-    default:
-      return aggregate.concat([loaders[k]]);
-    }
-  },
-  []);
-}

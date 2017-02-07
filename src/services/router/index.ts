@@ -1,9 +1,8 @@
-import Inject from '../../utils/di';
-
 export class RouterConfig {
-  constructor(
-    @Inject('$locationProvider') $locationProvider
-  ) {
+
+  static $inject = ['$locationProvider'];
+
+  constructor($locationProvider) {
     $locationProvider.html5Mode(false);
   }
 }
