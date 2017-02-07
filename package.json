@@ -47,7 +47,7 @@
   "devDependencies": {
     "angular": "^1.5.8",
     "angular-mocks": "^1.5.8",
-    "autoprefixer": "^6.3.3",
+    "autoprefixer": "^6.4.0",
     "autoprefixer-core": "^6.0.1",
     "awesome-typescript-loader": "^1.1.1",
     "babel-core": "^6.9.1",
