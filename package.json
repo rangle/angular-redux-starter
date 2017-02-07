@@ -100,7 +100,7 @@
     "remap-istanbul": "^0.6.3",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.0",
-    "stylelint": "^6.8.0",
+    "stylelint": "^7.0.2",
     "stylelint-webpack-plugin": "^0.2.0",
     "tachyons": "^4.5.5",
     "ts-helper": "0.0.1",
