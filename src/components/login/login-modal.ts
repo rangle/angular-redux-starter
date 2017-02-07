@@ -13,7 +13,7 @@ export class RioLoginModal {
     template: `
       <rio-modal>
         <rio-modal-content>
-          <h1 class='mt0'>Login</h1>
+          <h1 class="mt0">Login</h1>
           <rio-login-form
             has-error="loginModalCtrl.hasError"
             is-pending="loginModalCtrl.isPending"

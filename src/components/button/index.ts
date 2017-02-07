@@ -20,8 +20,15 @@ export class RioButton {
         type="{{buttonCtrl.type || 'button'}}"
         ng-transclude
         ng-click="buttonCtrl.onClick()"
-        class="btn btn-primary {{ buttonCtrl.className }}">
+        class="f6 link dim br2 ph3 pv2 dib white bg-black pointer bw0
+          button-reset {{ buttonCtrl.className }}">
       </button>
     `
   };
+
+  static $inject = ['$element'];
+
+  constructor(private $element: JQuery) {
+    $element.addClass('input-reset');
+  }
 }
