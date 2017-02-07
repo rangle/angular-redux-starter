@@ -17,7 +17,7 @@ export class RioCounterPage {
         <h2
           data-testid="counter-heading"
           id="qa-counter-heading"
-          class="center caps">
+          class="tc ttu">
           Counter
         </h2>
         <rio-counter

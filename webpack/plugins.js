@@ -5,6 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const SplitByPathPlugin = require('webpack-split-by-path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkCheckerPlugin = require(
+  'awesome-typescript-loader').ForkCheckerPlugin;
+
 const path = require('path');
 
 const sourceMap = process.env.TEST
@@ -19,6 +22,7 @@ const basePlugins = [
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
   new HtmlWebpackPlugin({
+    chunksSortMode: 'dependency',
     template: './src/index.html',
     inject: 'body',
   }),
@@ -26,6 +30,7 @@ const basePlugins = [
   new CopyWebpackPlugin([
     { from: 'src/assets', to: 'assets' },
   ]),
+  new ForkCheckerPlugin(),
 ].concat(sourceMap);
 
 const devPlugins = [

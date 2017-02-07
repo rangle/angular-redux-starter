@@ -14,7 +14,7 @@ export class RioFormError {
       <div
         data-testid="{{errorCtrl.testid || 'form-error'}}"
         ng-attr-id="{{errorCtrl.qaid}}"
-        class="bold black" ng-transclude>
+        class="b mb3 f6 gray" ng-transclude>
       </div>
     `
   };

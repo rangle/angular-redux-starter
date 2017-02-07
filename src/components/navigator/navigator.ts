@@ -12,7 +12,7 @@ export class RioNavigator {
       <nav
         ng-transclude
         data-testid="{{navigatorCtrl.testid}}"
-        class="flex items-center p1 bg-white border-bottom">
+        class="flex items-center pa2 bg-white bb b--black-20">
       </nav>
     `
   };

@@ -7,7 +7,7 @@ export class RioModal {
   static options: ng.IComponentOptions = {
     transclude: true,
     template: `
-      <div class="fixed top-0 bottom-0 left-0 right-0 z1 bg-darken-3">
+      <div class="fixed absolute--fill z-1 bg-black-30">
         <ng-transclude></ng-transclude>
       </div>
     `

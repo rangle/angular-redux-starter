@@ -11,7 +11,7 @@ export class RioFormGroup {
     template: `
       <div
         data-testid="{{formGroupCtrl.testid}}"
-        class="py2">
+        class="ph3">
         <ng-transclude></ng-transclude>
       </div>
     `

@@ -13,7 +13,7 @@ export class RioAlert {
     controllerAs: 'alertCtrl',
     template: `
       <div ng-attr-id="{{alertCtrl.qaid}}"
-        class="p2 bold"
+        class="pa3 b"
         data-testid="{{alertCtrl.testid}}"
         ng-class="alertCtrl.componentColour"
         ng-transclude>
