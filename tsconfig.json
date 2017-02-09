@@ -21,10 +21,6 @@
       "angular-mocks"
     ]
   },
-  "awesomeTypescriptLoaderOptions": {
-    "useBabel": true,
-    "useCache": false
-  },
   "exclude": [
     "node_modules",
     "dist"

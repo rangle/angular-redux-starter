@@ -53,11 +53,14 @@ module.exports = (config) => {
       },
       module: {
         rules: [
-          loaders.ts,
+          {
+            test: /\.ts$/,
+            loader: 'awesome-typescript-loader?module=commonjs',
+            exclude: /node_modules/,
+          },
           loaders.html,
           { test: /\.(css|svg|eot|woff|woff2|ttf)/, use: 'null-loader' },
-          config.singleRun ? loaders.istanbulInstrumenter : undefined,
-        ],
+        ].concat(config.singleRun ? [loaders.istanbulInstrumenter] : []),
       },
       stats: { colors: true, reasons: true },
       plugins,
