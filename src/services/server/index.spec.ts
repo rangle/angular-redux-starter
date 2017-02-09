@@ -39,17 +39,19 @@ describe('ServerService', () => {
     expect(serverService.get(_mockPath)).not.toBeUndefined();
   });
 
-  it('should receive successful response to GET request', () => {
+  it('should receive successful response to GET request', (done) => {
     expect(_mockHttpService).not.toBeUndefined();
     let serverService = new ServerService(_mockHttpService);
 
-    return serverService.get(_mockPath)
+    serverService.get(_mockPath)
       .then(data => {
         expect(data).toEqual(_mockResponseData);
+        expect(1).toEqual(1);
+        done();
       });
   });
 
-  it('should encounter an error during GET request', () => {
+  it('should encounter an error during GET request', (done) => {
     _mockResponseData = {
       status: 501,
       statusText: 'server error',
@@ -64,37 +66,41 @@ describe('ServerService', () => {
     let serverService = new ServerService(_mockHttpService);
     let error;
 
-    return serverService.post(_mockPath, _mockSentData)
+    serverService.post(_mockPath, _mockSentData)
       .then(null, err => error = err)
       .then(() => {
         expect(error).not.toBeUndefined();
+        done();
       });
   });
 
-  it('should receive successful response to POST request', () => {
+  it('should receive successful response to POST request', (done) => {
     let serverService = new ServerService(_mockHttpService);
 
-    return serverService.post(_mockPath, _mockSentData)
+    serverService.post(_mockPath, _mockSentData)
       .then(data => {
         expect(data).toEqual(_mockResponseData);
+        done();
       });
   });
 
-  it('should receive successful response to PUT request', () => {
+  it('should receive successful response to PUT request', (done) => {
     let serverService = new ServerService(_mockHttpService);
 
-    return serverService.put(_mockPath, _mockId, _mockSentData)
+    serverService.put(_mockPath, _mockId, _mockSentData)
       .then(data => {
         expect(data).toEqual(_mockResponseData);
+        done();
       });
   });
 
-  it('should receive successful response to DELETE request', () => {
+  it('should receive successful response to DELETE request', (done) => {
     let serverService = new ServerService(_mockHttpService);
 
-    return serverService.delete(_mockPath, _mockId)
+    serverService.delete(_mockPath, _mockId)
       .then(data => {
         expect(data).toEqual(_mockResponseData);
+        done();
       });
   });
 });

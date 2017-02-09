@@ -7,6 +7,16 @@ describe('AuthenticationService', () => {
 
   beforeEach(() => {
     _mockCreds = { username: 'alice', password: 'x'};
+    _mockResponse = {
+      'data': {},
+      'isAuthenticated': true,
+      'meta': {
+        'token': 'abc123',
+        'expires': '2100-01-01T01:01:0.0Z',
+        'first': 'First',
+        'last': 'Last'
+      },
+    };
     _mockServerService = {
       post: () => {
         return Promise.resolve({ data: _mockResponse });
@@ -21,28 +31,19 @@ describe('AuthenticationService', () => {
     expect(authService.login(_mockCreds)).not.toBeUndefined;
   });
 
-  it('should receive successful response', () => {
-    _mockResponse = {
-      'data': {},
-      'isAuthenticated': true,
-      'meta': {
-        'token': 'abc123',
-        'expires': '2100-01-01T01:01:0.0Z',
-        'first': 'First',
-        'last': 'Last'
-      },
-    };
+  it('should receive successful response', (done) => {
 
     expect(_mockServerService).not.toBeUndefined();
     let authService = new AuthenticationService(_mockServerService);
 
-    return authService.login(_mockCreds)
+    authService.login(_mockCreds)
       .then(data => {
         expect(data).toEqual(_mockResponse);
+        done();
       });
   });
 
-  it('should encounter an error', () => {
+  it('should encounter an error', (done) => {
 
     _mockResponse = {
       status: 401,
@@ -58,10 +59,11 @@ describe('AuthenticationService', () => {
     let authService = new AuthenticationService(_mockServerService);
 
     let error;
-    return authService.login(_mockCreds)
+    authService.login(_mockCreds)
       .then(null, err => error = err)
       .then(() => {
-        expect(error).not.toBeUndefined;
+        expect(error).not.toBeUndefined();
+        done();
       });
   });
 });
